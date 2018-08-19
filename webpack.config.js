@@ -1,21 +1,19 @@
-const webpack = require('webpack');
-const nodeEnv = process.env.NODE_ENV || 'production';
+var path = require('path');
 
-module.exports = {
-  devtool: 'source-map',
-  entry: {
-      filename: './index.js'
-    },
+var include = join(__dirname, 'src')
+
+export default {
+  entry: './src/index',
   output: {
-      filename: 'dist/dist.js'
-    },
+    path: join(__dirname, 'dist'),
+    libraryTarget: 'umd',
+    library: 'tinyPipe',
+  },
+  devtool: 'source-map',
   module: {
-      loaders: [
-            {
-	            test: /\.js$/,
-	            exclude: /node_modules/,
-	            loader: 'babel-loader',
-	          }
-          ]
-    }
-};
+    loaders: [
+      {test: /\.js$/, loader: 'babel', include: context},
+      {test: /\.json$/, 'loader': 'json', include: context},
+    ]
+  }
+}

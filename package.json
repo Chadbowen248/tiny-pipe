@@ -1,23 +1,32 @@
 {
   "name": "tiny-pipe",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Utility to compose functions",
-  "main": "dist/dist.js",
+  "main": "dist/index.js",
   "scripts": {
-    "build": "webpack --progress --watch"
+    "build-pack": "webpack --progress --watch",
+    "prebuild": "rimraf dist",
+    "build:main": "babel --out-dir dist src",
+    "build:umd": "webpack --output-filename index.umd"
   },
   "babel": {
     "presets": [
       "env"
     ]
   },
+  "files": [
+    "dist"
+  ],
   "author": "Chad Bowen <chadbowen248@gmail.com>",
   "license": "MIT",
   "devDependencies": {
+    "babel-cli": "6.26.0",
     "babel-core": "^6.26.3",
     "babel-loader": "^7.1.5",
+    "rimraf": "2.6.2",
     "babel-preset-env": "^1.7.0",
-    "webpack": "2.4.0"
+    "webpack": "2.4.0",
+    "json-loader": "0.5.4"
   },
   "dependencies": {},
   "repository": {
